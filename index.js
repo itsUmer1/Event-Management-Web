@@ -1,22 +1,17 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const eventRoute = require("./controller/eventRoute");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const app = express();
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
-mongoose.set("strictQuery", true);
-mongoose.connect("mongodb+srv://jayp_mishra:1234mish@cluster0.7eeb128.mongodb.net/emsdb");
-var db = mongoose.connection;
-db.on("open", () => console.log("Connected to DB"));
-db.on("error", () => console.log("Error occurred"));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
-app.use(cors());
-
-app.use('/eventRoute', eventRoute);
-app.listen(4000, () => {
-    console.log("Server started at 4000");
-})
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
